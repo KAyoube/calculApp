@@ -1,7 +1,8 @@
 const ecran = document.querySelector(".ecran"); //On recupere "l'ecran" du DOM
 const touches = [...document.querySelectorAll(".btn")]; // on range les touches dans un tabaleau (plus simple a manipuler)
 const listeKeycode = touches.map((touche) => touche.dataset.key); // on recupere la valeur des data key aux touches coresspondante
-const history = document.querySelector('#history') 
+const history = document.querySelector("#history");
+const recap = document.querySelector(".recap");
 let tab = [];
 let trash = [];
 let result = "";
@@ -60,24 +61,23 @@ const calculer = (valeur) => {
   }
 };
 
-/* document.getElementById("history").addEventListener("click", (e) => {
-  alert("vos précedents resultat : " + tab);
-}); */
+history.addEventListener("click", (e) => {
+  recap.textContent = tab;
+});
 
 document.addEventListener("click", (e) => {
   const valeur = e.target.dataset.key;
   calculer(valeur);
 });
 
-/* document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', (e) => {
     const valeur = e.keyCode.toString();
     calculer(valeur)
+})
 
-}) */
-
-/* window.addEventListener("error", (e) => {
+window.addEventListener("error", (e) => {
   alert("ERROR SYNTAX");
-}); */
+});
 
 const factorial = (num) => {
   var x = num;
@@ -87,14 +87,10 @@ const factorial = (num) => {
   }
   return num;
 };
-
-history.addEventListener("click",function toggle(){
-  const recap = document.querySelector('.recap')
-  recap.style.visibility='visible'
-})
-
 //-----------------jQuery------------------------------
 
-/* $('#history').click(function(e){
-  $('.recap').css('visibility','visible')
-}) */
+$(() => {
+  $("#history").click(() => {
+    $(".recap").slideToggle();
+  });
+});
