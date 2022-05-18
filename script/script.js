@@ -62,7 +62,7 @@ const calculer = (valeur) => {
 };
 
 history.addEventListener("click", (e) => {
-  recap.textContent = tab;
+  recap.textContent = "historique " +tab;
 });
 
 document.addEventListener("click", (e) => {
